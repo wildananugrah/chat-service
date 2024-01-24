@@ -1,0 +1,21 @@
+version: "3.1"
+
+services:
+  chat-socket.io:
+    build:
+      context: .
+      dockerfile: ./app.Dockerfile
+    container_name: chat-socket.io
+    restart: always
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    environment:
+      - APP_PORT
+      - CROSS_ORIGIN
+    networks:
+      app-net: {}
+
+networks:
+  app-net:
+    external: true
+    name: "wildan-net"
